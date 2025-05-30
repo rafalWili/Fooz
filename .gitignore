@@ -1,0 +1,2 @@
+# Ignore WordPress uploads folder (media files)
+wp-content/uploads/
