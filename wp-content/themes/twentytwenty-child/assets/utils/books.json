@@ -1,0 +1,239 @@
+{
+  "books": [
+    {
+      "category": "Fantasy",
+      "items": [
+        {
+          "title": "Dune",
+          "date": 1965,
+          "excerpt": "Epicka powieść science fiction o walce o kontrolę nad pustynną planetą Arrakis i jej cennym zasobem, melanżem.",
+          "coverUrl": "https://covers.openlibrary.org/b/id/8108691-L.jpg"
+        },
+        {
+          "title": "Neuromancer",
+          "date": 1984,
+          "excerpt": "Cyberpunkowa powieść o hakerze wynajętym do przeprowadzenia niebezpiecznej misji w cyfrowym świecie.",
+          "coverUrl": "https://covers.openlibrary.org/b/id/8108781-L.jpg"
+        },
+        {
+          "title": "The Hobbit",
+          "date": 1937,
+          "excerpt": "Przygodowa opowieść o hobbitie Bilbo Bagginsie i jego wyprawie z krasnoludami do Samotnej Góry.",
+          "coverUrl": "https://covers.openlibrary.org/b/id/6979861-L.jpg"
+        },
+        {
+          "title": "The Name of the Wind",
+          "date": 2007,
+          "excerpt": "Historia wybitnego muzyka i czarodzieja Kvothe’a, opowiedziana przez niego samego.",
+          "coverUrl": "https://covers.openlibrary.org/b/id/8231990-L.jpg"
+        },
+        {
+          "title": "Mistborn: The Final Empire",
+          "date": 2006,
+          "excerpt": "Mroczna powieść fantasy o młodej złodziejce odkrywającej swoje niezwykłe moce i próbującej obalić tyrana.",
+          "coverUrl": "https://covers.openlibrary.org/b/id/8232462-L.jpg"
+        },
+        {
+          "title": "A Game of Thrones",
+          "date": 1996,
+          "excerpt": "Pierwszy tom sagi „Pieśń Lodu i Ognia”, pełen intryg, walk o władzę i dramatycznych wydarzeń.",
+          "coverUrl": "https://covers.openlibrary.org/b/id/6979866-L.jpg"
+        },
+        {
+          "title": "The Way of Kings",
+          "date": 2010,
+          "excerpt": "Epicka fantasy, gdzie świat jest targany wojną, a bohaterowie mierzą się z własnym przeznaczeniem.",
+          "coverUrl": "https://covers.openlibrary.org/b/id/8232779-L.jpg"
+        }
+      ]
+    },
+    {
+      "category": "Literature",
+      "items": [
+        {
+          "title": "Pride and Prejudice",
+          "date": 1813,
+          "excerpt": "Klasyczna powieść Jane Austen o miłości, klasie społecznej i obyczajach w angielskiej prowincji.",
+          "coverUrl": "https://covers.openlibrary.org/b/id/8231856-L.jpg"
+        },
+        {
+          "title": "To Kill a Mockingbird",
+          "date": 1960,
+          "excerpt": "Poruszająca opowieść o rasizmie i moralności w południowych stanach USA.",
+          "coverUrl": "https://covers.openlibrary.org/b/id/8226191-L.jpg"
+        },
+        {
+          "title": "The Great Gatsby",
+          "date": 1925,
+          "excerpt": "Historia dekadenckich lat 20., amerykańskiego snu i tragicznej miłości.",
+          "coverUrl": "https://covers.openlibrary.org/b/id/7222246-L.jpg"
+        },
+        {
+          "title": "Jane Eyre",
+          "date": 1847,
+          "excerpt": "Opowieść o sile i niezależności młodej kobiety, jej miłości i moralnych wyborach.",
+          "coverUrl": "https://covers.openlibrary.org/b/id/8231991-L.jpg"
+        },
+        {
+          "title": "1984",
+          "date": 1949,
+          "excerpt": "Dystopia przedstawiająca totalitarny świat nadzoru i manipulacji.",
+          "coverUrl": "https://covers.openlibrary.org/b/id/7222248-L.jpg"
+        },
+        {
+          "title": "The Catcher in the Rye",
+          "date": 1951,
+          "excerpt": "Historia buntu i zagubienia młodego chłopaka w Nowym Jorku.",
+          "coverUrl": "https://covers.openlibrary.org/b/id/8231992-L.jpg"
+        },
+        {
+          "title": "Wuthering Heights",
+          "date": 1847,
+          "excerpt": "Mroczna, dramatyczna historia miłości i zemsty na angielskich wrzosowiskach.",
+          "coverUrl": "https://covers.openlibrary.org/b/id/8231857-L.jpg"
+        }
+      ]
+    },
+    {
+      "category": "Crime",
+      "items": [
+        {
+          "title": "The Girl with the Dragon Tattoo",
+          "date": 2005,
+          "excerpt": "Thriller o dziennikarzu i hakerce prowadzących śledztwo w sprawie zaginięcia sprzed lat.",
+          "coverUrl": "https://covers.openlibrary.org/b/id/8108685-L.jpg"
+        },
+        {
+          "title": "Gone Girl",
+          "date": 2012,
+          "excerpt": "Mroczna opowieść o tajemniczym zniknięciu żony i medialnym szumie wokół sprawy.",
+          "coverUrl": "https://covers.openlibrary.org/b/id/8225637-L.jpg"
+        },
+        {
+          "title": "The Da Vinci Code",
+          "date": 2003,
+          "excerpt": "Sensacyjna powieść łącząca tajemnice religii, sztuki i historii.",
+          "coverUrl": "https://covers.openlibrary.org/b/id/8226190-L.jpg"
+        },
+        {
+          "title": "In the Woods",
+          "date": 2007,
+          "excerpt": "Thriller psychologiczny o detektywie badającym morderstwo w swoim rodzinnym mieście.",
+          "coverUrl": "https://covers.openlibrary.org/b/id/8232470-L.jpg"
+        },
+        {
+          "title": "The Silence of the Lambs",
+          "date": 1988,
+          "excerpt": "Kultowy thriller o młodej agentce FBI i seryjnym mordercy.",
+          "coverUrl": "https://covers.openlibrary.org/b/id/8108737-L.jpg"
+        },
+        {
+          "title": "Sharp Objects",
+          "date": 2006,
+          "excerpt": "Psychologiczny thriller o dziennikarce powracającej do rodzinnego miasta, by badać morderstwa.",
+          "coverUrl": "https://covers.openlibrary.org/b/id/8232469-L.jpg"
+        },
+        {
+          "title": "Big Little Lies",
+          "date": 2014,
+          "excerpt": "Opowieść o sekretach i kłamstwach w małym miasteczku, z kryminalnym podtekstem.",
+          "coverUrl": "https://covers.openlibrary.org/b/id/8225639-L.jpg"
+        }
+      ]
+    },
+    {
+      "category": "History",
+      "items": [
+        {
+          "title": "Sapiens: A Brief History of Humankind",
+          "date": 2011,
+          "excerpt": "Popularnonaukowa książka o historii człowieka, od prehistorii do współczesności.",
+          "coverUrl": "https://covers.openlibrary.org/b/id/8231858-L.jpg"
+        },
+        {
+          "title": "Guns, Germs, and Steel",
+          "date": 1997,
+          "excerpt": "Analiza czynników kształtujących cywilizacje i rozwój społeczeństw.",
+          "coverUrl": "https://covers.openlibrary.org/b/id/8231993-L.jpg"
+        },
+        {
+          "title": "The Diary of a Young Girl",
+          "date": 1947,
+          "excerpt": "Dziennik Anny Frank, opowieść o życiu podczas okupacji hitlerowskiej.",
+          "coverUrl": "https://covers.openlibrary.org/b/id/8231859-L.jpg"
+        },
+        {
+          "title": "1776",
+          "date": 2005,
+          "excerpt": "Szczegółowa relacja z amerykańskiej wojny o niepodległość.",
+          "coverUrl": "https://covers.openlibrary.org/b/id/8231994-L.jpg"
+        },
+        {
+          "title": "The Wright Brothers",
+          "date": 2015,
+          "excerpt": "Biografia braci Wright, pionierów lotnictwa.",
+          "coverUrl": "https://covers.openlibrary.org/b/id/8232471-L.jpg"
+        },
+        {
+          "title": "Team of Rivals",
+          "date": 2005,
+          "excerpt": "Biografia Abrahama Lincolna i jego współpracowników.",
+          "coverUrl": "https://covers.openlibrary.org/b/id/8232467-L.jpg"
+        },
+        {
+          "title": "The Guns of August",
+          "date": 1962,
+          "excerpt": "Analiza początków I wojny światowej.",
+          "coverUrl": "https://covers.openlibrary.org/b/id/8232777-L.jpg"
+        }
+      ]
+    },
+    {
+      "category": "Personal Development",
+      "items": [
+        {
+          "title": "Atomic Habits",
+          "date": 2018,
+          "excerpt": "Poradnik o budowaniu dobrych nawyków i przełamywaniu złych.",
+          "coverUrl": "https://covers.openlibrary.org/b/id/8232473-L.jpg"
+        },
+        {
+          "title": "The Power of Now",
+          "date": 1997,
+          "excerpt": "Przewodnik po uważności i życiu w teraźniejszości.",
+          "coverUrl": "https://covers.openlibrary.org/b/id/8232474-L.jpg"
+        },
+        {
+          "title": "How to Win Friends and Influence People",
+          "date": 1936,
+          "excerpt": "Klasyka literatury motywacyjnej o komunikacji i relacjach międzyludzkich.",
+          "coverUrl": "https://covers.openlibrary.org/b/id/8232475-L.jpg"
+        },
+        {
+          "title": "Thinking, Fast and Slow",
+          "date": 2011,
+          "excerpt": "Analiza dwóch systemów myślenia i podejmowania decyzji.",
+          "coverUrl": "https://covers.openlibrary.org/b/id/8232476-L.jpg"
+        },
+        {
+          "title": "Grit",
+          "date": 2016,
+          "excerpt": "O sile pasji i wytrwałości w osiąganiu celów.",
+          "coverUrl": "https://covers.openlibrary.org/b/id/8232477-L.jpg"
+        },
+        {
+          "title": "Deep Work",
+          "date": 2016,
+          "excerpt": "Strategie koncentracji i produktywności w erze rozproszeń.",
+          "coverUrl": "https://covers.openlibrary.org/b/id/8232478-L.jpg"
+        },
+        {
+          "title": "The Subtle Art of Not Giving a F*ck",
+          "date": 2016,
+          "excerpt": "Nietypowy poradnik o życiowych wartościach i priorytetach.",
+          "coverUrl": "https://covers.openlibrary.org/b/id/8232479-L.jpg"
+        }
+      ]
+    }
+  ]
+}

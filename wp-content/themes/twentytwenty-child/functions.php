@@ -90,4 +90,106 @@ function fooz_register_book_cpt() {
 add_action( 'init', 'fooz_register_book_taxonomy' );
 
 
+//Aditionaly Import books from file books.json 
+function fooz_import_books_once() {
+    if ( ! current_user_can('manage_options') ) {
+        return; 
+    }
+    
+    //  import only once 
+    if ( get_option('fooz_books_imported') ) {
+        return;
+    }
+    
+    $books_json_path = get_stylesheet_directory() . '/assets/utils/books.json';
+
+    if ( ! file_exists($books_json_path) ) {
+        error_log('Books JSON file not found!');
+        return;
+    }
+
+    $json_content = file_get_contents($books_json_path);
+    $books_array = json_decode($json_content, true);
+    if ( empty($books_array) || ! isset($books_array['books']) ) {
+        error_log('Books JSON is empty or malformed');
+        return;
+    }
+
+    foreach ($books_array['books'] as $category_data) {
+        $genre_name = $category_data['category'];
+
+        $term = term_exists($genre_name, 'genre');
+        if (!$term) {
+            $term = wp_insert_term($genre_name, 'genre');
+            if (is_wp_error($term)) {
+                error_log('Failed to create genre term: ' . $genre_name);
+                continue;
+            }
+            $term_id = $term['term_id'];
+        } else {
+            $term_id = $term['term_id'];
+        }
+
+        // Add books to the custom post type 'book'
+
+        foreach ($category_data['items'] as $book) {
+            // check if the book already exists
+            $existing = get_page_by_title($book['title'], OBJECT, 'book');
+            if ($existing) {
+                continue;
+            }
+
+            $postarr = [
+                'post_title'   => wp_strip_all_tags($book['title']),
+                'post_content' => $book['excerpt'],
+                'post_type'    => 'book',
+                'post_status'  => 'publish',
+                'post_excerpt' => $book['excerpt'],
+                'post_date'    => date('Y-m-d H:i:s', strtotime($book['date'] . '-01-01')),
+            ];
+
+            $post_id = wp_insert_post($postarr);
+
+            if (!is_wp_error($post_id)) {
+                wp_set_object_terms($post_id, (int)$term_id, 'genre');
+
+                if (!empty($book['coverUrl'])) {
+                    fooz_set_featured_image_from_url($post_id, $book['coverUrl']);
+                }
+            }
+        }
+    }
+
+    update_option('fooz_books_imported', 1); // set end of the import 
+}
+
+function fooz_set_featured_image_from_url($post_id, $image_url) {
+    require_once(ABSPATH . 'wp-admin/includes/file.php');
+    require_once(ABSPATH . 'wp-admin/includes/media.php');
+    require_once(ABSPATH . 'wp-admin/includes/image.php');
+
+    $tmp = download_url($image_url);
+    if (is_wp_error($tmp)) {
+        return false;
+    }
+
+    $file_array = [
+        'name' => basename($image_url),
+        'tmp_name' => $tmp,
+    ];
+
+    $attachment_id = media_handle_sideload($file_array, $post_id);
+
+    if (is_wp_error($attachment_id)) {
+        @unlink($file_array['tmp_name']);
+        return false;
+    }
+
+    set_post_thumbnail($post_id, $attachment_id);
+    return true;
+}
+
+// admin hook to trigger the import function
+add_action('admin_init', 'fooz_import_books_once');
+
 
