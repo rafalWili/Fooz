@@ -3,6 +3,7 @@ function fooz_enqueue_assets() {
     //loads the parent theme stylesheet
     wp_enqueue_style( 'twentytwenty-style', get_template_directory_uri() . '/style.css' );
 
+    wp_enqueue_style( 'bootstrap-css', 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css', array(), '4.5.2' );
     // loads the child theme stylesheet
     // with a dependency on the parent theme stylesheet
     // potencially to override parent styles (one way to do it - task 1) 
@@ -11,11 +12,17 @@ function fooz_enqueue_assets() {
         array( 'twentytwenty-style' ),
         wp_get_theme()->get('Version')
     );
+     if ( is_post_type_archive('book') ) {
+        wp_enqueue_style( 'book-archive-style', get_stylesheet_directory_uri() . '/assets/css/books-archive.css' );
+    }
 
+    // scripts
+    wp_enqueue_script( 'popper-js', 'https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js', array('jquery'), '1.16.1', true );
+    wp_enqueue_script( 'bootstrap-js', 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js', array('jquery', 'popper-js'), '4.5.2', true );
         wp_enqueue_script(
         'fooz-custom-js', 
         get_stylesheet_directory_uri() . '/assets/js/scripts.js', 
-        array('jquery'), 
+        array('jquery','bootstrap-js'), 
         '1.0.0', 
         true // Load in the footer
     );
@@ -50,8 +57,8 @@ function fooz_register_book_cpt() {
         'publicly_queryable' => true,
         'show_ui'            => true,
         'show_in_menu'       => true,
-        'has_archive' => true,
-        'rewrite' => array( 'slug' => 'library' ),
+        'has_archive' => 'library',
+        'rewrite' => array( 'slug' => 'library', 'with_front' => false ),
         'supports'           => array( 'title', 'editor', 'thumbnail', 'custom-fields' ),
 
     );
@@ -192,4 +199,9 @@ function fooz_set_featured_image_from_url($post_id, $image_url) {
 // admin hook to trigger the import function
 add_action('admin_init', 'fooz_import_books_once');
 
-
+// set  query vars for the book archive pagination
+add_action('pre_get_posts', function($query) {
+    if (!is_admin() && $query->is_main_query() && $query->is_post_type_archive('book')) {
+        $query->set('posts_per_page', 5);
+    }
+});
