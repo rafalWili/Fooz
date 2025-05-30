@@ -15,6 +15,9 @@ function fooz_enqueue_assets() {
      if ( is_post_type_archive('book') || is_tax('genre') ) {
         wp_enqueue_style( 'book-archive-style', get_stylesheet_directory_uri() . '/assets/css/books-archive.css' );
     }
+     if ( is_singular('book') ) {
+        wp_enqueue_style( 'book-archive-style', get_stylesheet_directory_uri() . '/assets/css/book-single.css' );
+    }
 
     // scripts
     wp_enqueue_script( 'popper-js', 'https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js', array('jquery'), '1.16.1', true );
