@@ -12,7 +12,7 @@ function fooz_enqueue_assets() {
         array( 'twentytwenty-style' ),
         wp_get_theme()->get('Version')
     );
-     if ( is_post_type_archive('book') ) {
+     if ( is_post_type_archive('book') || is_tax('genre') ) {
         wp_enqueue_style( 'book-archive-style', get_stylesheet_directory_uri() . '/assets/css/books-archive.css' );
     }
 
@@ -201,7 +201,7 @@ add_action('admin_init', 'fooz_import_books_once');
 
 // set  query vars for the book archive pagination
 add_action('pre_get_posts', function($query) {
-    if (!is_admin() && $query->is_main_query() && $query->is_post_type_archive('book')) {
+    if (!is_admin() && $query->is_main_query() && $query->is_post_type_archive('book')  || is_tax('genre')) {
         $query->set('posts_per_page', 5);
     }
 });

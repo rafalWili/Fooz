@@ -2,8 +2,8 @@
 global $wp_query;
 $paged = max(1, get_query_var('paged'), get_query_var('page'));
 
-$base = trailingslashit(get_post_type_archive_link('book')) . 'page/%#%/';
-$format = 'page/%#%/';
+$base = str_replace(999999999, '%#%', get_pagenum_link(999999999));
+$format = '';
 
 $pagination_links = paginate_links(array(
     'base'      => $base,
