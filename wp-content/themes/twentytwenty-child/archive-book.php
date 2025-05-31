@@ -9,11 +9,21 @@ get_header();
     <div class="container py-5">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="page-title"><?php _e('Books Library', 'textdomain'); ?></h1>
-                <p><?php _e('Browse through our collection of books.', 'textdomain'); ?></p>
+                <h1 class="page-title"><?php _e('Books Library', 'fooz'); ?></h1>
+                <p><?php _e('Browse through our collection of books.', 'fooz'); ?></p>
             </div>
         </div>
     </div>
+
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-title"><?php _e('Latest Release', 'fooz'); ?></h1>
+                    <?php echo do_shortcode('[recent_book]'); ?>
+            </div>
+        </div>
+    </div>
+
 
 <?php 
 if (have_posts()) : ?>
