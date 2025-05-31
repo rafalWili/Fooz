@@ -355,3 +355,37 @@ function fooz_get_recent_books_ajax_handler() {
     wp_send_json_success($books);
 }
 
+
+function fooz_list_all_genres() {
+    // Get all terms from 'genre' taxonomy
+    $genres = get_terms(array(
+        'taxonomy'   => 'genre',
+        'hide_empty' => false, // Set true if you want only genres assigned to posts
+    ));
+
+    if (is_wp_error($genres) || empty($genres)) {
+        return '<p>' . __('No genres found.', 'fooz') . '</p>';
+    }
+    $output = '<div class="container mb-5 pb-5">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="page-title color-black">' . __('All Genres', 'fooz') . '</h2>
+    </div>  ';
+
+     
+
+    $output .= '<ul class="genre-list">';
+    foreach ($genres as $genre) {
+        $output .= '<li>';
+        // Link to the archive page of this genre term
+        $output .= '<a class="default-link" href="' . esc_url(get_term_link($genre)) . '">' . esc_html($genre->name) . '</a>';
+        $output .= '</li>';
+    }
+    $output .= '</ul>
+        </div>              
+    </div>';
+
+    return $output;
+}
+
+

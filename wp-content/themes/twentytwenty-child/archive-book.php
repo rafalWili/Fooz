@@ -53,6 +53,7 @@ if (have_posts()) : ?>
 
 wp_reset_postdata();
 
+echo fooz_list_all_genres();
 
 get_footer();
 ?>
