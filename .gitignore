@@ -1,2 +1,3 @@
 # Ignore WordPress uploads folder (media files)
 wp-content/uploads/
+wp-content/debug.log

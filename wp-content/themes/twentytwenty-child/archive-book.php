@@ -15,15 +15,18 @@ get_header();
         </div>
     </div>
 
-    <div class="container py-5">
+    <div class="container mb-5">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="page-title"><?php _e('Latest Release', 'fooz'); ?></h1>
+                <h2 class="page-title"><?php _e('Latest Release', 'fooz'); ?></h2>
                     <?php echo do_shortcode('[recent_book]'); ?>
             </div>
         </div>
     </div>
 
+
+  <?php echo do_shortcode('[get_recent_books genre=4]'); ?>
+     
 
 <?php 
 if (have_posts()) : ?>

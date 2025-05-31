@@ -21,3 +21,10 @@ body{
     background-color: #f0f0f0;
 }
 
+.default-link{
+    color: var(--site-primary-color);
+}
+.default-link:hover {
+    color: var(--site-primary-color);
+}
+

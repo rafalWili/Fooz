@@ -84,3 +84,7 @@ margin: 0;
 .page-item:first-child .page-link {
     border-bottom-left-radius: 1.25rem;
 }
+
+ul.recent-books-list{
+    margin: 0;
+}

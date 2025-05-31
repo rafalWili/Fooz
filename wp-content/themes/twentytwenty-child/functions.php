@@ -9,11 +9,11 @@ function fooz_enqueue_assets() {
     // potencially to override parent styles (one way to do it - task 1) 
     wp_enqueue_style( 'fooz-style',
         get_stylesheet_directory_uri() . '/style.css',
-        array( 'twentytwenty-style' ),
-        wp_get_theme()->get('Version')
+        array( 'twentytwenty-style','bootstrap-css' ),
+        filemtime(get_stylesheet_directory() . '/style.css')
     );
      if ( is_post_type_archive('book') || is_tax('genre') ) {
-        wp_enqueue_style( 'book-archive-style', get_stylesheet_directory_uri() . '/assets/css/books-archive.css' );
+        wp_enqueue_style( 'book-archive-style', get_stylesheet_directory_uri() . '/assets/css/books-archive.css', array( 'bootstrap-css' ), filemtime(get_stylesheet_directory() . '/assets/css/books-archive.css') );
     }
      if ( is_singular('book') ) {
         wp_enqueue_style( 'book-archive-style', get_stylesheet_directory_uri() . '/assets/css/book-single.css' );
@@ -208,3 +208,105 @@ add_action('pre_get_posts', function($query) {
         $query->set('posts_per_page', 5);
     }
 });
+
+# task5 - 5.1
+function fooz_recent_book_shortcode() {
+    $args = array(
+        'post_type'      => 'book',
+        'posts_per_page' => 1,
+        'orderby'        => 'date',
+        'order'          => 'DESC',
+    );
+
+    $recent_books = new WP_Query($args);
+
+    if ($recent_books->have_posts()) {
+        $recent_books->the_post();
+        $output = '<div class="recent-book">';
+        $output .= '<a class="default-link" href="' . get_permalink() . '">'. '<h2>' . get_the_title() . '</h2>' . '</a>';
+        $output .= '</div>';
+    } else {
+        $output = '<p>' . __('No recent books found.', 'fooz') . '</p>';
+    }
+
+    wp_reset_postdata();
+    return $output;
+}
+add_shortcode('recent_book', 'fooz_recent_book_shortcode');
+
+#task 5 - 5.2
+
+function fooz_get_books_shortcode($atts) {
+    $atts = shortcode_atts( array(
+        'posts_per_page' => -1, 
+        'orderby'        => 'title',
+        'order'          => 'ASC',
+        'genre'          => '', 
+        'min_count'      => 5,
+    ), $atts, 'get_recent_books' );
+
+    if (empty($atts['genre'])) {
+        return '<div class="alert alert-danger">' . __('You must specify a genre term_id.', 'fooz') . '</div>';
+    }
+
+    $args = array(
+        'post_type'      => 'book',
+        'posts_per_page' => intval($atts['posts_per_page']), // -1 = pobierz wszystko
+        'orderby'        => sanitize_text_field($atts['orderby']),
+        'order'          => sanitize_text_field($atts['order']),
+        'tax_query'      => array(
+            array(
+                'taxonomy' => 'genre',
+                'field'    => 'term_id',
+                'terms'    => intval($atts['genre']),
+            )
+        ),
+    );
+
+    $query = new WP_Query($args);
+
+    $filtered_posts = array();
+
+    if ($query->have_posts()) {
+        while ($query->have_posts()) {
+            $query->the_post();
+            $title = get_the_title();
+
+            if (!preg_match('/^\d+$/', $title)) {
+                $filtered_posts[] = get_post();
+            }
+        }
+    }
+    wp_reset_postdata();
+
+    if (count($filtered_posts) < intval($atts['min_count'])) {
+        return ''; 
+    }
+
+    $output = '<div class="container mb-5 pb-5">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="page-title">'. __('Latest books', 'fooz') .'</h2>
+                <ul class="recent-books-list">';
+    $count = 0;
+    $limit = ($atts['posts_per_page'] == -1) ? count($filtered_posts) : intval($atts['posts_per_page']);
+
+    foreach ($filtered_posts as $post) {
+        if ($count >= $limit) {
+            break;
+        }
+        setup_postdata($post);
+        $output .= '<li class="recent-book">';
+        $output .= '<a class="default-link" href="' . get_permalink($post) . '"><h2>' . get_the_title($post) . '</h2></a>';
+        $output .= '</li>';
+        $count++;
+    }
+    wp_reset_postdata();
+    $output .= '</ul> 
+          </div>
+        </div>
+    </div>';
+
+    return $output;
+}
+add_shortcode('get_recent_books', 'fooz_get_books_shortcode');
