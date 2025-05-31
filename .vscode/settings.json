@@ -1,0 +1,20 @@
+{
+  "editor.formatOnSave": true,
+  "[php]": {
+    "editor.defaultFormatter": "junstyle.php-cs-fixer"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+},
+  "php-cs-fixer.executablePath": "E:/xampp/php/php-cs-fixer-v3.phar",
+    "php-cs-fixer.executableIsPhpScript": true,
+  "php-cs-fixer.rules": "@PSR12",
+  "php-cs-fixer.formatHtml": true,
+  "php-cs-fixer.onsave": true
+}
