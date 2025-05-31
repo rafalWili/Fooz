@@ -22,12 +22,21 @@ function fooz_enqueue_assets() {
     // scripts
     wp_enqueue_script( 'popper-js', 'https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js', array('jquery'), '1.16.1', true );
     wp_enqueue_script( 'bootstrap-js', 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js', array('jquery', 'popper-js'), '4.5.2', true );
-        wp_enqueue_script(
+    
+    wp_enqueue_script(
         'fooz-custom-js', 
         get_stylesheet_directory_uri() . '/assets/js/scripts.js', 
         array('jquery','bootstrap-js'), 
         '1.0.0', 
         true // Load in the footer
+    );
+
+     wp_localize_script(
+        'fooz-custom-js',
+        'fooz_ajax_obj',
+        array(
+            'ajax_url' => admin_url('admin-ajax.php')
+        )
     );
 }
 add_action( 'wp_enqueue_scripts', 'fooz_enqueue_assets' );
@@ -310,3 +319,39 @@ function fooz_get_books_shortcode($atts) {
     return $output;
 }
 add_shortcode('get_recent_books', 'fooz_get_books_shortcode');
+
+//name, date, genre, excerpt.
+// Register AJAX
+add_action('wp_ajax_get_recent_books_ajax', 'fooz_get_recent_books_ajax_handler');
+add_action('wp_ajax_nopriv_get_recent_books_ajax', 'fooz_get_recent_books_ajax_handler');
+
+function fooz_get_recent_books_ajax_handler() {
+    $args = array(
+        'post_type'      => 'book',
+        'posts_per_page' => 20,
+        'orderby'        => 'date',
+        'order'          => 'DESC',
+    );
+
+    $query = new WP_Query($args);
+
+    $books = array();
+
+    if ($query->have_posts()) {
+        while ($query->have_posts()) {
+            $query->the_post();
+
+            $books[] = array(
+                //'ID'    => get_the_ID(), not needed in the response as per the task requirements
+                'name' => get_the_title(),
+                'date' => get_the_date('Y-m-d'),
+                'genre' => get_the_terms(get_the_ID(), 'genre') ? wp_list_pluck(get_the_terms(get_the_ID(), 'genre'), 'name') : array(),
+                'excerpt'  => get_the_excerpt(),
+            );
+        }
+    }
+    wp_reset_postdata();
+
+    wp_send_json_success($books);
+}
+
