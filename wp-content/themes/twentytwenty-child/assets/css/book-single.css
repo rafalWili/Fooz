@@ -1,19 +1,19 @@
 body.single-book {
-font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
-h1{
-    font-size: 3rem;
+h1 {
+  font-size: 3rem;
 }
-h2{
-    font-size: 2.5rem;
+h2 {
+  font-size: 2.5rem;
 }
-.book--thumbnail{
-    padding: 2rem;
-    background-color: #f8f9fa;
+.book--thumbnail {
+  padding: 2rem;
+  background-color: #f8f9fa;
 }
 .book--row {
-    display: flex;
+  display: flex;
   flex-direction: column-reverse;
 }
 

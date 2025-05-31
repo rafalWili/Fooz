@@ -1,5 +1,5 @@
 <?php
-$paged = max( 1, get_query_var('paged'), get_query_var('page') );
+$paged = max(1, get_query_var('paged'), get_query_var('page'));
 get_header();
 ?>
 
@@ -15,22 +15,23 @@ get_header();
 </div>
 
 <?php if (have_posts()) : ?>
-    <div class="container">
-        <div class="row gutters-4">
-            <?php while (have_posts()) : the_post(); 
-                get_template_part('template-parts/books', 'loops');
-            endwhile; ?>
-        </div>
-
-        <?php 
-        get_template_part('template-parts/pagination', null, array('paged' => $paged));
-        ?>
+<div class="container">
+    <div class="row gutters-4">
+        <?php while (have_posts()) : the_post();
+            get_template_part('template-parts/books', 'loops');
+        endwhile; ?>
     </div>
+
+    <?php
+        get_template_part('template-parts/pagination', null, array('paged' => $paged));
+    ?>
+</div>
 
 <?php else : ?>
-    <div class="container">
-        <p><?php _e('No books found in this genre.', 'textdomain'); ?></p>
-    </div>
+<div class="container">
+    <p><?php _e('No books found in this genre.', 'textdomain'); ?>
+    </p>
+</div>
 <?php endif;
 
 wp_reset_postdata();

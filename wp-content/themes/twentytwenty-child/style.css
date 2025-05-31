@@ -9,30 +9,26 @@ License:        GNU General Public License v2 or later
 License URI:    https://www.gnu.org/licenses/gpl-2.0.html
 */
 
-
 :root {
-  --site-primary-color: #ff317b; 
-  --color-white: #fff;  
-  --color-black: #222;  
-
+  --site-primary-color: #ff317b;
+  --color-white: #fff;
+  --color-black: #222;
 }
-.color-primary{
-    color: var(--site-primary-color);
+.color-primary {
+  color: var(--site-primary-color);
 }
-.color-black{
-    color: var(--color-black);
-}
-
-
-body{
-    background-color: #f0f0f0;
-    font-size: 12px;
+.color-black {
+  color: var(--color-black);
 }
 
-.default-link{
-    color: var(--site-primary-color);
+body {
+  background-color: #f0f0f0;
+  font-size: 12px;
+}
+
+.default-link {
+  color: var(--site-primary-color);
 }
 .default-link:hover {
-    color: var(--site-primary-color);
+  color: var(--site-primary-color);
 }
-
